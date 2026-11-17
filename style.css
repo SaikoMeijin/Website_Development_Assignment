@@ -1,0 +1,234 @@
+/* ===== Colours, spacing and sizes (one palette, one spacing scale) ===== */
+:root {
+  --bg: #EEE9FF;      /* page background (lavender) */
+  --paper: #FFFFFF;   /* cards and resume sheet */
+  --ink: #15102E;     /* main text and outlines */
+  --soft: #433D5E;    /* secondary text */
+  --accent: #5B2BE0;  /* links and buttons only */
+  --s1: 8px;
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 48px;
+  --s5: 96px;
+  --radius: 16px;
+  --max: 1100px;
+}
+
+/* ===== Base elements ===== */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Instrument Sans", system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+}
+h1, h2, h3 {
+  font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0 0 var(--s2);
+}
+h2 { font-size: clamp(36px, 5vw, 56px); margin-bottom: var(--s3); }
+h3 { font-size: 28px; margin-bottom: var(--s1); }
+p { margin: 0 0 var(--s2); max-width: 65ch; }
+a { color: var(--accent); font-weight: 600; transition: color 0.2s, background-color 0.2s; }
+a:hover { color: var(--ink); }
+a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+ul { margin: 0 0 var(--s3); padding-left: 20px; }
+li { margin-bottom: var(--s1); max-width: 65ch; }
+
+/* Skip link: hidden until a keyboard user tabs to it */
+.skip-link { position: absolute; left: var(--s2); top: -60px; background: var(--paper); padding: var(--s1) var(--s2); }
+.skip-link:focus { top: var(--s2); z-index: 20; }
+
+/* ===== Navigation bar (sticky, flexbox) ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  border-bottom: 2px solid var(--ink);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s3);
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--s2) var(--s3);
+}
+.logo {
+  font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: var(--s1); list-style: none; margin: 0; padding: 0; }
+.nav-links li { margin: 0; }
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 12px;
+  color: var(--ink);
+  text-decoration: none;
+  border-radius: 999px;
+}
+.nav-link:hover { background: var(--paper); }
+
+/* ===== Buttons (pill shape, colour change on hover only) ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 var(--s3);
+  border: 2px solid var(--accent);
+  border-radius: 999px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-primary { background: var(--accent); color: var(--paper); }
+.btn-primary:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.btn-secondary { background: transparent; color: var(--accent); }
+.btn-secondary:hover { background: var(--paper); color: var(--ink); border-color: var(--ink); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: var(--s4); }
+
+/* ===== Sections (shared width and spacing) ===== */
+section { max-width: var(--max); margin: 0 auto; padding: var(--s5) var(--s3); }
+
+/* ===== Hero: headline, intro, buttons, three facts ===== */
+#hero { padding-top: var(--s5); padding-bottom: var(--s4); }
+#hero h1 { font-size: clamp(44px, 8vw, 104px); line-height: 0.95; margin-bottom: var(--s3); max-width: 14ch; }
+.hero-line { display: block; animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.hero-line:nth-child(2) { animation-delay: 0.15s; }
+.lede { font-size: 20px; color: var(--soft); animation-delay: 0.3s; margin-bottom: var(--s3); }
+.actions.hero-line { display: flex; animation-delay: 0.45s; }
+.facts.hero-line { display: grid; animation-delay: 0.6s; }
+.facts {
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s3);
+  margin: 0;
+  padding-top: var(--s3);
+  border-top: 2px solid var(--ink);
+}
+.fact dt { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 800; font-size: 36px; line-height: 1.1; }
+.fact dd { margin: var(--s1) 0 0; color: var(--soft); font-size: 16px; }
+.old-price { position: relative; text-decoration: none; color: var(--soft); }
+.old-price::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: 52%;
+  height: 4px;
+  background: var(--ink);
+  transform-origin: left;
+  animation: strike 0.6s 1.3s ease-out both;
+}
+
+/* ===== Ticker: a slow moving strip of what I do ===== */
+.ticker { overflow: hidden; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); padding: var(--s2) 0; }
+.ticker-track { display: flex; width: max-content; animation: scroll 40s linear infinite; }
+.ticker-track span {
+  font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 28px;
+  padding: 0 var(--s3);
+}
+.ticker-track span::after { content: "✱"; margin-left: var(--s3); color: var(--soft); }
+
+/* ===== Work cards (grid of flat white cards) ===== */
+.cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s3); align-items: start; }
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 32px;
+}
+.card p { font-size: 17px; }
+.card li { font-size: 17px; }
+.meta { color: var(--soft); font-size: 15px; }
+.card-link { display: inline-flex; align-items: center; min-height: 44px; }
+
+/* ===== About ===== */
+#about p { font-size: 22px; line-height: 1.5; }
+
+/* ===== Paper resume (white A4-style sheet) ===== */
+.download-link { display: inline-flex; align-items: center; min-height: 44px; margin-bottom: var(--s3); }
+.sheet {
+  max-width: 794px;
+  background: var(--paper);
+  color: #000;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  padding: var(--s4) 56px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.sheet h3 {
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #000;
+  padding-bottom: 4px;
+  margin: var(--s3) 0 var(--s1);
+}
+.sheet p, .sheet li { max-width: none; }
+.sheet ul { margin-bottom: var(--s1); }
+.sheet li { margin-bottom: 4px; }
+.sheet a { color: #000; font-weight: 400; }
+.sheet-name { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 800; font-size: 30px; margin-bottom: 4px; }
+.sheet-contact { margin-bottom: var(--s1); }
+.entry-head { margin-bottom: 4px; overflow: hidden; }
+.entry-head span { float: right; }
+
+/* ===== Footer ===== */
+.site-footer { border-top: 2px solid var(--ink); text-align: center; padding: var(--s3); color: var(--soft); font-size: 15px; }
+.site-footer p { margin: 0 auto; }
+
+/* ===== Animations ===== */
+@keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes strike { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes scroll { to { transform: translateX(-50%); } }
+@supports (animation-timeline: view()) {
+  .card, #about p { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 35%; }
+}
+
+/* ===== Phones and small screens (under 700px) ===== */
+@media (max-width: 700px) {
+  body { font-size: 17px; }
+  .nav { flex-wrap: wrap; gap: var(--s1); padding: 12px var(--s2); }
+  .nav-links { order: 3; width: 100%; justify-content: space-between; }
+  .nav-link { padding: 0 var(--s1); }
+  section { padding: 64px var(--s2); }
+  .facts { grid-template-columns: 1fr; gap: var(--s2); }
+  .cards { grid-template-columns: 1fr; }
+  .card { padding: var(--s3); }
+  .sheet { padding: var(--s3); }
+  .entry-head span { float: none; display: block; }
+  html { scroll-padding-top: 130px; }
+}
+
+/* ===== Respect "reduce motion" settings ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* ===== Print: only the paper resume, one A4 page, black on white ===== */
+@media print {
+  @page { size: A4; margin: 12mm; }
+  body { background: #fff; color: #000; font-size: 10pt; }
+  .skip-link, .site-header, .ticker, .site-footer, main > section:not(#resume), #resume > h2, .download-link { display: none; }
+  #resume { padding: 0; max-width: none; }
+  .sheet { border: none; padding: 0; font-size: 10pt; max-width: none; border-radius: 0; }
+  *, *::before, *::after { animation: none !important; }
+}
