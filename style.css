@@ -162,21 +162,22 @@ section { max-width: var(--max); margin: 0 auto; padding: var(--s5) var(--s3); }
   line-height: 1.5;
 }
 .sheet h3 {
+  font-family: "Instrument Sans", system-ui, sans-serif;
   font-size: 15px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  border-bottom: 1px solid #000;
-  padding-bottom: 4px;
-  margin: var(--s3) 0 var(--s1);
+  border-bottom: 2px solid #000;
+  padding-bottom: 2px;
+  margin: 20px 0 var(--s1);
 }
-.sheet p, .sheet li { max-width: none; }
+.sheet p, .sheet li { max-width: none; margin-bottom: 2px; }
 .sheet ul { margin-bottom: var(--s1); }
-.sheet li { margin-bottom: 4px; }
 .sheet a { color: #000; font-weight: 400; }
-.sheet-name { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 800; font-size: 30px; margin-bottom: 4px; }
-.sheet-contact { margin-bottom: var(--s1); }
-.entry-head { margin-bottom: 4px; overflow: hidden; }
-.entry-head span { float: right; }
+.sheet-name { font-family: "Instrument Sans", system-ui, sans-serif; font-weight: 600; font-size: 30px; text-transform: uppercase; }
+.sheet-contact { display: flex; flex-wrap: wrap; gap: 4px var(--s3); }
+.entry { margin-bottom: var(--s1); }
+.entry-head { display: flex; justify-content: space-between; gap: var(--s2); }
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s1) var(--s3); }
 
 /* ===== Footer ===== */
 .site-footer { border-top: 2px solid var(--ink); text-align: center; padding: var(--s3); color: var(--soft); font-size: 15px; }
@@ -200,7 +201,8 @@ section { max-width: var(--max); margin: 0 auto; padding: var(--s5) var(--s3); }
   .cards { grid-template-columns: 1fr; }
   .card { padding: var(--s3); }
   .sheet { padding: var(--s3); }
-  .entry-head span { float: none; display: block; }
+  .entry-head, .skills-grid { display: block; }
+  .entry-head span { display: block; }
   html { scroll-padding-top: 130px; }
 }
 
@@ -217,5 +219,6 @@ section { max-width: var(--max); margin: 0 auto; padding: var(--s5) var(--s3); }
   .skip-link, .site-header, .ticker, .site-footer, main > section:not(#resume), #resume > h2, .download-link { display: none; }
   #resume { padding: 0; max-width: none; }
   .sheet { border: none; padding: 0; font-size: 10pt; max-width: none; border-radius: 0; }
+  .sheet a { text-decoration: none; }
   *, *::before, *::after { animation: none !important; }
 }
