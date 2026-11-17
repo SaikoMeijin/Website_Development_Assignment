@@ -119,18 +119,6 @@ section { max-width: var(--max); margin: 0 auto; padding: var(--s5) var(--s3); }
 }
 .fact dt { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 800; font-size: 36px; line-height: 1.1; }
 .fact dd { margin: var(--s1) 0 0; color: var(--soft); font-size: 16px; }
-.old-price { position: relative; text-decoration: none; color: var(--soft); }
-.old-price::after {
-  content: "";
-  position: absolute;
-  left: -2px;
-  right: -2px;
-  top: 52%;
-  height: 4px;
-  background: var(--ink);
-  transform-origin: left;
-  animation: strike 0.6s 1.3s ease-out both;
-}
 
 /* ===== Ticker: a slow moving strip of what I do ===== */
 .ticker { overflow: hidden; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); padding: var(--s2) 0; }
@@ -196,7 +184,6 @@ section { max-width: var(--max); margin: 0 auto; padding: var(--s5) var(--s3); }
 
 /* ===== Animations ===== */
 @keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
-@keyframes strike { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes scroll { to { transform: translateX(-50%); } }
 @supports (animation-timeline: view()) {
   .card, #about p { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 35%; }
